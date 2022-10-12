@@ -12,9 +12,8 @@ router.post('/', async (req, res) => {
     req.body.author = req.user.id;
     // create new message based on the body
     await Message.create(req.body);
-    res.redirect('/new-message');
+    res.redirect('/');
   } else {
-    console.log('not logged in');
     res.redirect('/new-message');
   }
 });

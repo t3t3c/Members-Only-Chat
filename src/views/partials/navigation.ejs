@@ -1,7 +1,8 @@
 <nav>
-  <a href="/sign-up">Sign Up </a>
-  <a href="/login">Login</a>
-  <a href="/log-out">Log out</a>
+  <a href="/">View Messages</a>
+  <a href="/login"><%= !currentUser ? 'Login' : '' %></a>
+  <a href="/sign-up"><%= !currentUser ? 'Sign Up' : '' %></a>
+  <a href="/log-out"><%= currentUser ? 'Log out' : '' %></a>
   <a href="/join">Join the club</a>
-  <a href="/new-message">Create a new message!</a>
+  <a href="/new-message"><%= currentUser ? 'Create a new message' : '' %></a>
 </nav>

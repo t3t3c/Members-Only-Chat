@@ -6,13 +6,20 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  if (req.body.adminPasscode === 'admin') {
+  // if the password is correct and user is logged in
+  if (req.body.adminPasscode === 'admin' && req.user) {
     // make user an admin
     req.user.isAdmin = true;
     await req.user.save();
-    res.redirect('/join');
+    res.render('information', {
+      title: 'Correct',
+      information: 'You are an Admin now!',
+    });
   } else {
-    res.redirect('/join');
+    res.render('join', {
+      title: 'Wrong passcode',
+      adminMessage: 'Wrong passcode',
+    });
   }
 });
 

@@ -3,16 +3,20 @@
   <%- include('partials/head', { title }) %>
   <body>
     <!-- prettier-ignore -->
-    <%- include('partials/navigation') %>
     <%- include('partials/header') %>
+    <%- include('partials/navigation') %>
+    <!-- prettier-ignore -->
     <div class="content join">
-      <h2>Join the club</h2>
+      <% if (locals.currentUser) { %>
+        <h2>Join the club</h2>
       <form action="" method="post">
+        <p><%= currentUser.isMember ? 'You are a member!' : '' %></p>
         <label for="passcode">Secret passcode: </label><br />
         <input type="text" name="passcode" id="passcode" required /><br />
         <button type="submit">Check the passcode!</button>
       </form>
       <h2>Become an administrator</h2>
+      <p><%= currentUser.isAdmin ? 'You are an Admin !' : '' %></p>
       <form action="/admin" method="post">
         <label for="adminPasscode">Secret passcode: </label><br />
         <input
@@ -21,8 +25,12 @@
           id="adminPasscode"
           required
         /><br />
+        <p><%= locals.adminMessage %></p>
         <button type="submit">Check the passcode!</button>
       </form>
+      <% } else { %>
+        <h2>You must login to see this page!</h2>
+      <% } %>
     </div>
   </body>
 </html>

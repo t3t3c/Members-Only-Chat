@@ -3,11 +3,10 @@
   <%- include('partials/head', { title }) %>
   <body>
     <!-- prettier-ignore -->
-    <%- include('partials/navigation') %>
     <%- include('partials/header') %>
+    <%- include('partials/navigation') %>
     <div class="content login">
       <h2>Login</h2>
-      <p><%= locals.user ? `Hello ${user.firstName}` : 'ni ma' %></p>
       <form action="/login" method="post">
         <label for="username">Username: </label><br />
         <input type="text" name="username" id="username" required /><br />

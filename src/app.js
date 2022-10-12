@@ -99,6 +99,9 @@ app.use('/new-message', newMessageRoute);
 const adminRouter = require('./routes/admin');
 app.use('/admin', adminRouter);
 
+const messageRouter = require('./routes/message');
+app.use('/message', messageRouter);
+
 // 404
 app.use((req, res) => {
   res.status(404).render('404', { title: '404' });

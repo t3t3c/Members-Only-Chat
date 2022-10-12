@@ -4,7 +4,6 @@ const { body, validationResult } = require('express-validator');
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 
-
 router.get('/', (req, res) => {
   res.render('sign-up', { title: 'Sign Up' });
 });
@@ -58,7 +57,10 @@ router.post(
         req.body.password = await bcrypt.hash(req.body.password, 10);
         // create user with hashed
         await User.create(req.body);
-        res.redirect('/sign-up');
+        res.render('information', {
+          title: 'Sign up successful',
+          information: 'You can now login',
+        });
       } catch (error) {
         res.status(500).send('Internal error', error.message);
         next(error);

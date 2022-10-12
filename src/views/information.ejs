@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head', { title }) %>
+  <body>
+    <!-- prettier-ignore -->
+    <%- include('partials/header') %>
+    <%- include('partials/navigation') %>
+    <div class="content information">
+      <h1><%= locals.title %></h1>
+      <p><%= locals.information %></p>
+      <a href="/">Go home</a>
+    </div>
+  </body>
+</html>
