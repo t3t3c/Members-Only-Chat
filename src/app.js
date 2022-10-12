@@ -109,4 +109,8 @@ app.use((req, res) => {
 
 app.use(logger('dev'));
 
-app.listen(3000, () => console.log('App listening on port 3000'));
+// start listening
+// process.env.PORT is for heroku
+app.listen(process.env.PORT || 5000, () =>
+  console.log('App listening on port 3000')
+);
