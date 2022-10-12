@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head', { title }) %>
+  <body>
+    <!-- prettier-ignore -->
+    <%- include('partials/header') %>
+    <%- include('partials/navigation') %>
+    <div class="content home">
+      <h2>Home Page</h2>
+      <!-- prettier-ignore -->
+      <p>
+        <%= currentUser ? '' : 'Login and become a member to see the authors of the messages and the dates' %>
+      </p>
+      <!-- prettier-ignore -->
+      <p>
+        <%= (currentUser && !currentUser.isMember) ? 'Become a member to see the authors of the messages and the dates' : '' %>
+      </p>
+      <div class="messages">
+        <% locals.allMessages.forEach(message => { %>
+        <!-- prettier-ignore -->
+        <div class="message">
+          <h3><%= message.title %></h3>
+          <p><%= message.text %></p>
+          <% if (currentUser && currentUser.isMember) { %>
+            <p><%= message.author.username %></p>
+            <p><%= formatMessage(message.timestamp) %></p>
+          <% } else { %>
+            <p>Anonymous</p>
+            <p>Date unknown</p>
+          <% } %>
+          <% if (currentUser && currentUser.isAdmin) { %>
+            <form action="<%= message.id %>/delete" method="post">
+              <button type="submit">Delete Message</button>
+            </form>
+          <% } %>
+        </div>
+        <% }); %>
+      </div>
+    </div>
+  </body>
+</html>

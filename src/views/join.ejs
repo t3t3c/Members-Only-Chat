@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head', { title }) %>
+  <body>
+    <!-- prettier-ignore -->
+    <%- include('partials/navigation') %>
+    <%- include('partials/header') %>
+    <div class="content join">
+      <h2>Join the club</h2>
+      <form action="" method="post">
+        <label for="passcode">Secret passcode: </label><br />
+        <input type="text" name="passcode" id="passcode" required /><br />
+        <button type="submit">Check the passcode!</button>
+      </form>
+      <h2>Become an administrator</h2>
+      <form action="/admin" method="post">
+        <label for="adminPasscode">Secret passcode: </label><br />
+        <input
+          type="text"
+          name="adminPasscode"
+          id="adminPasscode"
+          required
+        /><br />
+        <button type="submit">Check the passcode!</button>
+      </form>
+    </div>
+  </body>
+</html>
